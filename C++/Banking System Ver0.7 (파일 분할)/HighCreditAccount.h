@@ -9,9 +9,9 @@ private:
 public:
 	HighCreditAccount(int ID, int money, const char* name, int rate, int special) : NormalAccount(ID, money, name, rate), specialRate(special) {}
 
-	virtual void Deposit(int money)
+	void Deposit(int money)
 	{
-		NormalAccount::Deposit(money);						// ¿ø±İ°ú ÀÌÀÚÃß°¡
-		Account::Deposit(money * (specialRate / 100.0));	// Æ¯º°ÀÌÀÚÃß°¡
+		NormalAccount::Deposit(money);						// ì›ê¸ˆê³¼ ì´ìì¶”ê°€
+		Account::Deposit(money * (specialRate / 100.0));	// íŠ¹ë³„ì´ìì¶”ê°€
 	}
 };
