@@ -4,14 +4,14 @@
 class NormalAccount : public Account
 {
 private:
-	int interRate;	// ÀÌÀÚÀ² %´ÜÀ§
+	int interRate;	// ì´ììœ¨ %ë‹¨ìœ„
 
 public:
 	NormalAccount(int ID, int money, const char* name, int rate) : Account(ID, money, name), interRate(rate) {}
 
-	virtual void Deposit(int money)
+	void Deposit(int money)
 	{
-		Account::Deposit(money);						// ¿ø±İÃß°¡
-		Account::Deposit(money * (interRate / 100.0));	// ÀÌÀÚÃß°¡
+		Account::Deposit(money);						// ì›ê¸ˆì¶”ê°€
+		Account::Deposit(money * (interRate / 100.0));	// ì´ìì¶”ê°€
 	}
 };
