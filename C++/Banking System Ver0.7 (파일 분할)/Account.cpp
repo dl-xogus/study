@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "BankingCommonDecl.h"
 #include "Account.h"
 
@@ -31,9 +32,9 @@ int Account::Withdraw(int money)
 
 void Account::ShowAccInfo() const
 {
-	cout << "°èÁÂID: " << accID << endl;
-	cout << "ÀÌ ¸§: " << cusName << endl;
-	cout << "ÀÜ ¾×: " << balance << endl;
+	cout << "Â°Ã¨ÃÃ‚ID: " << accID << endl;
+	cout << "Ã€ÃŒ Â¸Â§: " << cusName << endl;
+	cout << "Ã€Ãœ Â¾Ã—: " << balance << endl;
 }
 
 Account::~Account()
