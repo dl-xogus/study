@@ -57,9 +57,9 @@ int Account::Withdraw(int money)
 
 void Account::ShowAccInfo() const
 {
-	cout << "°èÁÂID: " << accID << endl;
-	cout << "ÀÌ ¸§: " << cusName << endl;
-	cout << "ÀÜ ¾×: " << balance << endl;
+	cout << "ê³„ì¢ŒID: " << accID << endl;
+	cout << "ì´ ë¦„: " << cusName << endl;
+	cout << "ìž” ì•¡: " << balance << endl;
 }
 
 Account::~Account()
@@ -70,14 +70,14 @@ Account::~Account()
 class NormalAccount : public Account
 {
 private:
-	int interRate;	// ÀÌÀÚÀ² %´ÜÀ§
+	int interRate;	// ì´ìžìœ¨ %ë‹¨ìœ„
 public:
 	NormalAccount(int ID, int money, const char* name, int rate) : Account(ID, money, name), interRate(rate) {}
 	
-	virtual void Deposit(int money)
+	void Deposit(int money)
 	{
-		Account::Deposit(money);						// ¿ø±ÝÃß°¡
-		Account::Deposit(money * (interRate / 100.0));	// ÀÌÀÚÃß°¡
+		Account::Deposit(money);						// ì›ê¸ˆì¶”ê°€
+		Account::Deposit(money * (interRate / 100.0));	// ì´ìžì¶”ê°€
 	}
 };
 
@@ -88,10 +88,10 @@ private:
 public:
 	HighCreditAccount(int ID, int money, const char* name, int rate, int special) : NormalAccount(ID, money, name, rate), specialRate(special) {}
 
-	virtual void Deposit(int money)
+	void Deposit(int money)
 	{
-		NormalAccount::Deposit(money);						// ¿ø±Ý°ú ÀÌÀÚÃß°¡
-		Account::Deposit(money * (specialRate / 100.0));	// Æ¯º°ÀÌÀÚÃß°¡
+		NormalAccount::Deposit(money);						// ì›ê¸ˆê³¼ ì´ìžì¶”ê°€
+		Account::Deposit(money * (specialRate / 100.0));	// íŠ¹ë³„ì´ìžì¶”ê°€
 	}
 };
 
@@ -116,20 +116,20 @@ protected:
 void AccountHandler::ShowMenu() const
 {
 	cout << "-----Menu------" << endl;
-	cout << "1. °èÁÂ°³¼³" << endl;
-	cout << "2. ÀÔ ±Ý" << endl;
-	cout << "3. Ãâ ±Ý" << endl;
-	cout << "4. °èÁÂÁ¤º¸ ÀüÃ¼ Ãâ·Â" << endl;
-	cout << "5. ÇÁ·Î±×·¥ Á¾·á" << endl;
+	cout << "1. ê³„ì¢Œê°œì„¤" << endl;
+	cout << "2. ìž… ê¸ˆ" << endl;
+	cout << "3. ì¶œ ê¸ˆ" << endl;
+	cout << "4. ê³„ì¢Œì •ë³´ ì „ì²´ ì¶œë ¥" << endl;
+	cout << "5. í”„ë¡œê·¸ëž¨ ì¢…ë£Œ" << endl;
 }
 
 void AccountHandler::MakeAccount()
 {
 	int sel;
-	cout << "[°èÁÂÁ¾·ù¼±ÅÃ]" << endl;
-	cout << "1. º¸Åë¿¹±Ý°èÁÂ" << endl;
-	cout << "2. ½Å¿ë½Å·Ú°èÁÂ" << endl;
-	cout << "¼± ÅÃ: "; cin >> sel;
+	cout << "[ê³„ì¢Œì¢…ë¥˜ì„ íƒ]" << endl;
+	cout << "1. ë³´í†µì˜ˆê¸ˆê³„ì¢Œ" << endl;
+	cout << "2. ì‹ ìš©ì‹ ë¢°ê³„ì¢Œ" << endl;
+	cout << "ì„  íƒ: "; cin >> sel;
 	cout << endl;
 
 	if (sel == NORMAL)
@@ -137,7 +137,7 @@ void AccountHandler::MakeAccount()
 	else if (sel == CREDIT)
 		MakeCreditAccount();
 	else
-		cout << "Àß¸øµÈ ¼±ÅÃÀÔ´Ï´Ù." << endl << endl;
+		cout << "ìž˜ëª»ëœ ì„ íƒìž…ë‹ˆë‹¤." << endl << endl;
 }
 
 void AccountHandler::MakeNormalAccount()
@@ -147,11 +147,11 @@ void AccountHandler::MakeNormalAccount()
 	int balance;
 	int interRate;
 
-	cout << "[º¸Åë¿¹±Ý°èÁÂ °³¼³]" << endl;
-	cout << "°èÁÂID: "; cin >> ID;
-	cout << "ÀÌ ¸§: "; cin >> name;
-	cout << "ÀÔ±Ý¾×: "; cin >> balance;
-	cout << "ÀÌÀÚÀ²: "; cin >> interRate;
+	cout << "[ë³´í†µì˜ˆê¸ˆê³„ì¢Œ ê°œì„¤]" << endl;
+	cout << "ê³„ì¢ŒID: "; cin >> ID;
+	cout << "ì´ ë¦„: "; cin >> name;
+	cout << "ìž…ê¸ˆì•¡: "; cin >> balance;
+	cout << "ì´ìžìœ¨: "; cin >> interRate;
 	cout << endl;
 
 	accArr[accNum++] = new NormalAccount(ID, balance, name, interRate);
@@ -165,12 +165,12 @@ void AccountHandler::MakeCreditAccount()
 	int interRate;
 	int creditLevel;
 
-	cout << "[½Å¿ë½Å·Ú°èÁÂ °³¼³]" << endl;
-	cout << "°èÁÂID: "; cin >> ID;
-	cout << "ÀÌ ¸§: "; cin >> name;
-	cout << "ÀÔ±Ý¾×: "; cin >> balance;
-	cout << "ÀÌÀÚÀ²: "; cin >> interRate;
-	cout << "½Å¿ëµî±Þ(1toA, 2toB, 3toC): "; cin >> creditLevel;
+	cout << "[ì‹ ìš©ì‹ ë¢°ê³„ì¢Œ ê°œì„¤]" << endl;
+	cout << "ê³„ì¢ŒID: "; cin >> ID;
+	cout << "ì´ ë¦„: "; cin >> name;
+	cout << "ìž…ê¸ˆì•¡: "; cin >> balance;
+	cout << "ì´ìžìœ¨: "; cin >> interRate;
+	cout << "ì‹ ìš©ë“±ê¸‰(1toA, 2toB, 3toC): "; cin >> creditLevel;
 	cout << endl;
 
 	switch (creditLevel)
@@ -191,9 +191,9 @@ void AccountHandler::DepositMoney()
 	int ID;
 	int money;
 
-	cout << "[ÀÔ ±Ý]" << endl;
-	cout << "°èÁÂID: "; cin >> ID;
-	cout << "ÀÔ±Ý¾×: "; cin >> money;
+	cout << "[ìž… ê¸ˆ]" << endl;
+	cout << "ê³„ì¢ŒID: "; cin >> ID;
+	cout << "ìž…ê¸ˆì•¡: "; cin >> money;
 	cout << endl;
 
 	for (int i = 0; i < accNum; i++)
@@ -201,20 +201,20 @@ void AccountHandler::DepositMoney()
 		if (accArr[i]->GetAccID() == ID)
 		{
 			accArr[i]->Deposit(money);
-			cout << "ÀÔ±Ý¿Ï·á" << endl << endl;
+			cout << "ìž…ê¸ˆì™„ë£Œ" << endl << endl;
 			return;
 		}
 	}
-	cout << "À¯È¿ÇÏÁö ¾ÊÀº ID ÀÔ´Ï´Ù." << endl << endl;
+	cout << "ìœ íš¨í•˜ì§€ ì•Šì€ ID ìž…ë‹ˆë‹¤." << endl << endl;
 }
 
 void AccountHandler::WithdrawMoney()
 {
 	int ID;
 	int money;
-	cout << "[Ãâ ±Ý]" << endl;
-	cout << "°èÁÂID: "; cin >> ID;
-	cout << "Ãâ±Ý¾×: "; cin >> money;
+	cout << "[ì¶œ ê¸ˆ]" << endl;
+	cout << "ê³„ì¢ŒID: "; cin >> ID;
+	cout << "ì¶œê¸ˆì•¡: "; cin >> money;
 	cout << endl;
 
 	for (int i = 0; i < accNum; i++)
@@ -223,14 +223,14 @@ void AccountHandler::WithdrawMoney()
 		{
 			if (accArr[i]->Withdraw(money) == 0)
 			{
-				cout << "ÀÜ¾×ºÎÁ·" << endl << endl;
+				cout << "ìž”ì•¡ë¶€ì¡±" << endl << endl;
 				return;
 			}
-			cout << "Ãâ±Ý¿Ï·á" << endl << endl;
+			cout << "ì¶œê¸ˆì™„ë£Œ" << endl << endl;
 			return;
 		}
 	}
-	cout << "À¯È¿ÇÏÁö ¾ÊÀº ID ÀÔ´Ï´Ù." << endl << endl;
+	cout << "ìœ íš¨í•˜ì§€ ì•Šì€ ID ìž…ë‹ˆë‹¤." << endl << endl;
 }
 
 AccountHandler::AccountHandler() : accNum(0)
@@ -243,7 +243,7 @@ AccountHandler::AccountHandler() : accNum(0)
 
 void AccountHandler::ShowAllAccInfo() const
 {
-	cout << "[°èÁÂÁ¤º¸]" << endl;
+	cout << "[ê³„ì¢Œì •ë³´]" << endl;
 	for (int i = 0; i < accNum; i++)
 	{
 		accArr[i]->ShowAccInfo();
@@ -265,7 +265,7 @@ int main()
 	while (1)
 	{
 		manager.ShowMenu();
-		cout << "¼± ÅÃ: "; cin >> choice;
+		cout << "ì„  íƒ: "; cin >> choice;
 		cout << endl;
 
 		switch (choice)
@@ -285,7 +285,7 @@ int main()
 		case EXIT:
 			return 0;
 		default:
-			cout << "Àß¸øµÈ ¼±ÅÃÀÔ´Ï´Ù." << endl << endl;
+			cout << "ìž˜ëª»ëœ ì„ íƒìž…ë‹ˆë‹¤." << endl << endl;
 		}
 	}
 	return 0;
