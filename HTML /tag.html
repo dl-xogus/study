@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- ctrl + / 주석 -->
+
+    <!--
+    #block tag
+    div, p, h1 ~ h6, ul/li
+    
+    #inline tag
+    a, b, span, img
+
+    table, form
+    -->
+    
+    <div>
+        <h1>
+            h1은 문서의 가장 큰 제목<br>
+            h2 ~ h6 중요도 순으로 사용
+        </h1>
+
+        <div>
+            <h1>h1</h1>
+            <h2>h2</h2>
+            <h3>h3</h3>
+            <h4>h4</h4>
+            <h5>h5</h5>
+            <h6>h6</h6>
+        </div>
+    </div>
+        
+    <hr> <!-- <hr>태그는 구분선 -->
+
+    <div>
+        <h2>
+            div는 박스형태의 콘텐츠를 만들때 사용(그룹)
+        </h2>
+        <div style="border:1px solid black">
+            div tag <br>
+            가로 사이즈는 부모의 전체 크기 만큼 설정 됨
+        </div>
+    </div>
+        
+    <hr> <!-- <hr>태그는 구분선 -->
+
+    <div>
+        <h2>
+            p는 문서의 단락을 만들때 사용<br>
+            (문자, 이미지, 버튼을 내용으로 포함)
+        </h2>
+    </div>
+    
+    <h2>ex</h2>
+    <div>
+        <h3>예제 1</h3>
+        <div>
+            
+            <img src="https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg" alt="">
+            <br>
+            <p><a href="https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg">다운로드</a></p>
+        </div>
+    </div>
+
+    <p>p태그의 내용으로 block태그를 포함하 수 없음</p>
+        
+    <p>
+        <h3>h3은 block태그여서 내용으로 포함할 수 없음</h3>
+        <div>div는 block태그여서 내용으로 포함할 수 없음</div>
+    </p>
+</body>
+</html>
